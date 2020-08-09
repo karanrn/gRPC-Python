@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package employee;
+
+import "Response/response.proto";
+
+message EmployeeRequest {
+    int64 emp_id = 1;
+}
+
+message Employee {
+    int64 emp_id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string job_title = 4;
+    string dob = 5;
+}
+
+message Employees {
+    repeated Employee employees = 1;
+}
+
+message EmployeeResponse {
+    Response response = 1;
+    Employee employee = 2;
+}
+
+service GetEmployee {
+    rpc Get(EmployeeRequest) returns (EmployeeResponse);
+}

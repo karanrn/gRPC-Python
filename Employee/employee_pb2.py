@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x17\x45mployee/employee.proto\x12\x08\x65mployee\x1a\x17Response/response.proto\"!\n\x0f\x45mployeeRequest\x12\x0e\n\x06\x65mp_id\x18\x01 \x01(\x03\"a\n\x08\x45mployee\x12\x0e\n\x06\x65mp_id\x18\x01 \x01(\x03\x12\x12\n\nfirst_name\x18\x02 \x01(\t\x12\x11\n\tlast_name\x18\x03 \x01(\t\x12\x11\n\tjob_title\x18\x04 \x01(\t\x12\x0b\n\x03\x64ob\x18\x05 \x01(\t\"2\n\tEmployees\x12%\n\temployees\x18\x01 \x03(\x0b\x32\x12.employee.Employee\"^\n\x10\x45mployeeResponse\x12$\n\x08response\x18\x01 \x01(\x0b\x32\x12.employee.Response\x12$\n\x08\x65mployee\x18\x02 \x01(\x0b\x32\x12.employee.Employee2K\n\x0bGetEmployee\x12<\n\x03Get\x12\x19.employee.EmployeeRequest\x1a\x1a.employee.EmployeeResponseb\x06proto3'
+  serialized_pb=b'\n\x17\x45mployee/employee.proto\x12\x08\x65mployee\x1a\x17Response/response.proto\"!\n\x0f\x45mployeeRequest\x12\x0e\n\x06\x65mp_id\x18\x01 \x01(\x03\"a\n\x08\x45mployee\x12\x0e\n\x06\x65mp_id\x18\x01 \x01(\x03\x12\x12\n\nfirst_name\x18\x02 \x01(\t\x12\x11\n\tlast_name\x18\x03 \x01(\t\x12\x11\n\tjob_title\x18\x04 \x01(\t\x12\x0b\n\x03\x64ob\x18\x05 \x01(\t\"2\n\tEmployees\x12%\n\temployees\x18\x01 \x03(\x0b\x32\x12.employee.Employee\"\x07\n\x05\x45mpty\"^\n\x10\x45mployeeResponse\x12$\n\x08response\x18\x01 \x01(\x0b\x32\x12.employee.Response\x12$\n\x08\x65mployee\x18\x02 \x01(\x0b\x32\x12.employee.Employee2\x92\x01\n\x0f\x45mployeeService\x12\x46\n\x0bGetEmployee\x12\x19.employee.EmployeeRequest\x1a\x1a.employee.EmployeeResponse\"\x00\x12\x37\n\x0cGetEmployees\x12\x0f.employee.Empty\x1a\x12.employee.Employee\"\x00\x30\x01\x62\x06proto3'
   ,
   dependencies=[Response_dot_response__pb2.DESCRIPTOR,])
 
@@ -151,6 +151,31 @@ _EMPLOYEES = _descriptor.Descriptor(
 )
 
 
+_EMPTY = _descriptor.Descriptor(
+  name='Empty',
+  full_name='employee.Empty',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=248,
+  serialized_end=255,
+)
+
+
 _EMPLOYEERESPONSE = _descriptor.Descriptor(
   name='EmployeeResponse',
   full_name='employee.EmployeeResponse',
@@ -185,8 +210,8 @@ _EMPLOYEERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=248,
-  serialized_end=342,
+  serialized_start=257,
+  serialized_end=351,
 )
 
 _EMPLOYEES.fields_by_name['employees'].message_type = _EMPLOYEE
@@ -195,6 +220,7 @@ _EMPLOYEERESPONSE.fields_by_name['employee'].message_type = _EMPLOYEE
 DESCRIPTOR.message_types_by_name['EmployeeRequest'] = _EMPLOYEEREQUEST
 DESCRIPTOR.message_types_by_name['Employee'] = _EMPLOYEE
 DESCRIPTOR.message_types_by_name['Employees'] = _EMPLOYEES
+DESCRIPTOR.message_types_by_name['Empty'] = _EMPTY
 DESCRIPTOR.message_types_by_name['EmployeeResponse'] = _EMPLOYEERESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -219,6 +245,13 @@ Employees = _reflection.GeneratedProtocolMessageType('Employees', (_message.Mess
   })
 _sym_db.RegisterMessage(Employees)
 
+Empty = _reflection.GeneratedProtocolMessageType('Empty', (_message.Message,), {
+  'DESCRIPTOR' : _EMPTY,
+  '__module__' : 'Employee.employee_pb2'
+  # @@protoc_insertion_point(class_scope:employee.Empty)
+  })
+_sym_db.RegisterMessage(Empty)
+
 EmployeeResponse = _reflection.GeneratedProtocolMessageType('EmployeeResponse', (_message.Message,), {
   'DESCRIPTOR' : _EMPLOYEERESPONSE,
   '__module__' : 'Employee.employee_pb2'
@@ -228,19 +261,19 @@ _sym_db.RegisterMessage(EmployeeResponse)
 
 
 
-_GETEMPLOYEE = _descriptor.ServiceDescriptor(
-  name='GetEmployee',
-  full_name='employee.GetEmployee',
+_EMPLOYEESERVICE = _descriptor.ServiceDescriptor(
+  name='EmployeeService',
+  full_name='employee.EmployeeService',
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=344,
-  serialized_end=419,
+  serialized_start=354,
+  serialized_end=500,
   methods=[
   _descriptor.MethodDescriptor(
-    name='Get',
-    full_name='employee.GetEmployee.Get',
+    name='GetEmployee',
+    full_name='employee.EmployeeService.GetEmployee',
     index=0,
     containing_service=None,
     input_type=_EMPLOYEEREQUEST,
@@ -248,9 +281,19 @@ _GETEMPLOYEE = _descriptor.ServiceDescriptor(
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
+  _descriptor.MethodDescriptor(
+    name='GetEmployees',
+    full_name='employee.EmployeeService.GetEmployees',
+    index=1,
+    containing_service=None,
+    input_type=_EMPTY,
+    output_type=_EMPLOYEE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
 ])
-_sym_db.RegisterServiceDescriptor(_GETEMPLOYEE)
+_sym_db.RegisterServiceDescriptor(_EMPLOYEESERVICE)
 
-DESCRIPTOR.services_by_name['GetEmployee'] = _GETEMPLOYEE
+DESCRIPTOR.services_by_name['EmployeeService'] = _EMPLOYEESERVICE
 
 # @@protoc_insertion_point(module_scope)

@@ -4,10 +4,13 @@ package employee;
 
 import "Response/response.proto";
 
+/* EmployeeRequest represents a request to get Employee
+    basis emp_id. */
 message EmployeeRequest {
     int64 emp_id = 1;
 }
 
+/* Employee represents details of employee object. */
 message Employee {
     int64 emp_id = 1;
     string first_name = 2;
@@ -16,15 +19,26 @@ message Employee {
     string dob = 5;
 }
 
+/* Employees represents list of employee fetched/queried. */
 message Employees {
     repeated Employee employees = 1;
 }
 
+/* Null request input/parameter to service. */
+message Empty {
+
+}
+
+/* EmployeeResponse represents result for EmployeeRequest.*/
 message EmployeeResponse {
     Response response = 1;
     Employee employee = 2;
 }
 
-service GetEmployee {
-    rpc Get(EmployeeRequest) returns (EmployeeResponse);
+/* EmployeeService service performs operations related to Employees.*/
+service EmployeeService {
+    // Returns a employee basis emp_id
+    rpc GetEmployee(EmployeeRequest) returns (EmployeeResponse) {};
+    // Returns all employees
+    rpc GetEmployees(Empty) returns (stream Employee) {};
 }

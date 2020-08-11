@@ -5,8 +5,9 @@ import grpc
 from Employee import employee_pb2 as Employee_dot_employee__pb2
 
 
-class GetEmployeeStub(object):
-    """Missing associated documentation comment in .proto file."""
+class EmployeeServiceStub(object):
+    """EmployeeService service performs operations related to Employees.
+    """
 
     def __init__(self, channel):
         """Constructor.
@@ -14,42 +15,62 @@ class GetEmployeeStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.Get = channel.unary_unary(
-                '/employee.GetEmployee/Get',
+        self.GetEmployee = channel.unary_unary(
+                '/employee.EmployeeService/GetEmployee',
                 request_serializer=Employee_dot_employee__pb2.EmployeeRequest.SerializeToString,
                 response_deserializer=Employee_dot_employee__pb2.EmployeeResponse.FromString,
                 )
+        self.GetEmployees = channel.unary_stream(
+                '/employee.EmployeeService/GetEmployees',
+                request_serializer=Employee_dot_employee__pb2.Empty.SerializeToString,
+                response_deserializer=Employee_dot_employee__pb2.Employee.FromString,
+                )
 
 
-class GetEmployeeServicer(object):
-    """Missing associated documentation comment in .proto file."""
+class EmployeeServiceServicer(object):
+    """EmployeeService service performs operations related to Employees.
+    """
 
-    def Get(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+    def GetEmployee(self, request, context):
+        """Returns a employee basis emp_id
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetEmployees(self, request, context):
+        """Returns all employees
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
 
-def add_GetEmployeeServicer_to_server(servicer, server):
+def add_EmployeeServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'Get': grpc.unary_unary_rpc_method_handler(
-                    servicer.Get,
+            'GetEmployee': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetEmployee,
                     request_deserializer=Employee_dot_employee__pb2.EmployeeRequest.FromString,
                     response_serializer=Employee_dot_employee__pb2.EmployeeResponse.SerializeToString,
             ),
+            'GetEmployees': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetEmployees,
+                    request_deserializer=Employee_dot_employee__pb2.Empty.FromString,
+                    response_serializer=Employee_dot_employee__pb2.Employee.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'employee.GetEmployee', rpc_method_handlers)
+            'employee.EmployeeService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class GetEmployee(object):
-    """Missing associated documentation comment in .proto file."""
+class EmployeeService(object):
+    """EmployeeService service performs operations related to Employees.
+    """
 
     @staticmethod
-    def Get(request,
+    def GetEmployee(request,
             target,
             options=(),
             channel_credentials=None,
@@ -59,8 +80,25 @@ class GetEmployee(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/employee.GetEmployee/Get',
+        return grpc.experimental.unary_unary(request, target, '/employee.EmployeeService/GetEmployee',
             Employee_dot_employee__pb2.EmployeeRequest.SerializeToString,
             Employee_dot_employee__pb2.EmployeeResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetEmployees(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/employee.EmployeeService/GetEmployees',
+            Employee_dot_employee__pb2.Empty.SerializeToString,
+            Employee_dot_employee__pb2.Employee.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

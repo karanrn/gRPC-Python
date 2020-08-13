@@ -4,6 +4,8 @@ from concurrent import futures
 from Employee import employee_pb2
 from Employee import employee_pb2_grpc
 from Response import response_pb2
+from Validation import validation_pb2
+from Validation import validation_pb2_grpc
 
 class EmployeeService(employee_pb2_grpc.EmployeeService):
 
@@ -29,6 +31,28 @@ class EmployeeService(employee_pb2_grpc.EmployeeService):
                 job_title='IT',
                 dob='1994-08-11')
             yield emp
+    
+    def AddEmployee(self, request, context):
+        with grpc.insecure_channel('localhost:5001') as channel:
+            stub = validation_pb2_grpc.ValidationServiceStub(channel)
+            # Validate first_name
+            validation_response = stub.ValidateName(validation_pb2.ValidateNameRequest(
+                name=request.first_name
+            ))
+
+        empResp = employee_pb2.EmployeeResponse()
+        empResp.employee.CopyFrom(request)
+
+        if validation_response.valid:
+            empResp.response.StatusCode = 200
+            empResp.response.ResponseMessage = "Employee details of emp_id = {} \
+is added.".format(request.emp_id)
+        else:
+            empResp.response.StatusCode = 400
+            empResp.response.ResponseMessage = "Employee first_name is not valid, \
+it should only contain alphabets."
+
+        return empResp
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=5))

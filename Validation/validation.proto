@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package validation;
+
+/* ValidateNameRequest represents
+ a request to validate name */
+message ValidateNameRequest {
+    string name = 1;
+}
+
+/* ValidateNameResponse represents
+    a reponse to ValidateNameResponse.
+    If valid then returns true else false
+*/
+message ValidateNameResponse {
+    bool valid = 1;
+}
+
+/* ValidationService represents service/method to
+    validate name
+*/
+service ValidationService {
+    rpc ValidateName(ValidateNameRequest) returns (ValidateNameResponse) {};
+}

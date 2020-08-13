@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x17\x45mployee/employee.proto\x12\x08\x65mployee\x1a\x17Response/response.proto\"!\n\x0f\x45mployeeRequest\x12\x0e\n\x06\x65mp_id\x18\x01 \x01(\x03\"a\n\x08\x45mployee\x12\x0e\n\x06\x65mp_id\x18\x01 \x01(\x03\x12\x12\n\nfirst_name\x18\x02 \x01(\t\x12\x11\n\tlast_name\x18\x03 \x01(\t\x12\x11\n\tjob_title\x18\x04 \x01(\t\x12\x0b\n\x03\x64ob\x18\x05 \x01(\t\"2\n\tEmployees\x12%\n\temployees\x18\x01 \x03(\x0b\x32\x12.employee.Employee\"\x07\n\x05\x45mpty\"^\n\x10\x45mployeeResponse\x12$\n\x08response\x18\x01 \x01(\x0b\x32\x12.employee.Response\x12$\n\x08\x65mployee\x18\x02 \x01(\x0b\x32\x12.employee.Employee2\x92\x01\n\x0f\x45mployeeService\x12\x46\n\x0bGetEmployee\x12\x19.employee.EmployeeRequest\x1a\x1a.employee.EmployeeResponse\"\x00\x12\x37\n\x0cGetEmployees\x12\x0f.employee.Empty\x1a\x12.employee.Employee\"\x00\x30\x01\x62\x06proto3'
+  serialized_pb=b'\n\x17\x45mployee/employee.proto\x12\x08\x65mployee\x1a\x17Response/response.proto\"!\n\x0f\x45mployeeRequest\x12\x0e\n\x06\x65mp_id\x18\x01 \x01(\x03\"a\n\x08\x45mployee\x12\x0e\n\x06\x65mp_id\x18\x01 \x01(\x03\x12\x12\n\nfirst_name\x18\x02 \x01(\t\x12\x11\n\tlast_name\x18\x03 \x01(\t\x12\x11\n\tjob_title\x18\x04 \x01(\t\x12\x0b\n\x03\x64ob\x18\x05 \x01(\t\"2\n\tEmployees\x12%\n\temployees\x18\x01 \x03(\x0b\x32\x12.employee.Employee\"\x07\n\x05\x45mpty\"^\n\x10\x45mployeeResponse\x12$\n\x08response\x18\x01 \x01(\x0b\x32\x12.employee.Response\x12$\n\x08\x65mployee\x18\x02 \x01(\x0b\x32\x12.employee.Employee2\xd3\x01\n\x0f\x45mployeeService\x12\x46\n\x0bGetEmployee\x12\x19.employee.EmployeeRequest\x1a\x1a.employee.EmployeeResponse\"\x00\x12\x37\n\x0cGetEmployees\x12\x0f.employee.Empty\x1a\x12.employee.Employee\"\x00\x30\x01\x12?\n\x0b\x41\x64\x64\x45mployee\x12\x12.employee.Employee\x1a\x1a.employee.EmployeeResponse\"\x00\x62\x06proto3'
   ,
   dependencies=[Response_dot_response__pb2.DESCRIPTOR,])
 
@@ -269,7 +269,7 @@ _EMPLOYEESERVICE = _descriptor.ServiceDescriptor(
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
   serialized_start=354,
-  serialized_end=500,
+  serialized_end=565,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetEmployee',
@@ -288,6 +288,16 @@ _EMPLOYEESERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_EMPTY,
     output_type=_EMPLOYEE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='AddEmployee',
+    full_name='employee.EmployeeService.AddEmployee',
+    index=2,
+    containing_service=None,
+    input_type=_EMPLOYEE,
+    output_type=_EMPLOYEERESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

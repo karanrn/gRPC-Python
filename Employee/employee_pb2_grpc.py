@@ -25,6 +25,11 @@ class EmployeeServiceStub(object):
                 request_serializer=Employee_dot_employee__pb2.Empty.SerializeToString,
                 response_deserializer=Employee_dot_employee__pb2.Employee.FromString,
                 )
+        self.AddEmployee = channel.unary_unary(
+                '/employee.EmployeeService/AddEmployee',
+                request_serializer=Employee_dot_employee__pb2.Employee.SerializeToString,
+                response_deserializer=Employee_dot_employee__pb2.EmployeeResponse.FromString,
+                )
 
 
 class EmployeeServiceServicer(object):
@@ -45,6 +50,13 @@ class EmployeeServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def AddEmployee(self, request, context):
+        """Add new employee
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_EmployeeServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -57,6 +69,11 @@ def add_EmployeeServiceServicer_to_server(servicer, server):
                     servicer.GetEmployees,
                     request_deserializer=Employee_dot_employee__pb2.Empty.FromString,
                     response_serializer=Employee_dot_employee__pb2.Employee.SerializeToString,
+            ),
+            'AddEmployee': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddEmployee,
+                    request_deserializer=Employee_dot_employee__pb2.Employee.FromString,
+                    response_serializer=Employee_dot_employee__pb2.EmployeeResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -100,5 +117,22 @@ class EmployeeService(object):
         return grpc.experimental.unary_stream(request, target, '/employee.EmployeeService/GetEmployees',
             Employee_dot_employee__pb2.Empty.SerializeToString,
             Employee_dot_employee__pb2.Employee.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AddEmployee(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/employee.EmployeeService/AddEmployee',
+            Employee_dot_employee__pb2.Employee.SerializeToString,
+            Employee_dot_employee__pb2.EmployeeResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
